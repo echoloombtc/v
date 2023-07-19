@@ -1,0 +1,25 @@
+#!/bin/bash
+domain=$(cat /etc/xray/domain)
+TIMES="10"
+CHATID="-1001977290461"
+KEY="5705685884:AAGVL4-K3uA1tdgoVb5iHu6VjP0iPdmEMr4"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+ISP=$(cat /etc/lokasi/isp)
+CITY=$(cat /etc/lokasi/city)
+domain=$(cat /etc/xray/domain) 
+MYIP=$(curl -sS ipv4.icanhazip.com)
+IZIN=$(curl -sS https://raw.githubusercontent.com/kuhing/ip/main/vps | awk '{print 3}' | grep $MYIP)
+Name=$(curl -sS https://raw.githubusercontent.com/kuhing/ip/main/vps | grep $MYIP | awk '{print $2}')
+
+TEXT="
+<code>◇━━━━━━━━━━━━━━◇</code>
+<b>  ⚠️ AUTOSCRIPT INSTALLER ⚠️</b>
+<code>◇━━━━━━━━━━━━━━◇</code>
+<b>DOMAIN    :</b> <code>${domain} </code>
+<b>IP        :</b> <code>${MYIP} </code>
+<b>ISP & CITY:</b> <code>$ISP $CITY </code>
+<b>AUTHOR    :</b> <code>$Name </code>
+<b>EXP SCRIPT:</b> <code>$IZIN </code>
+<code>◇━━━━━━━━━━━━━━◇</code>
+"
+curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
