@@ -1,6 +1,6 @@
 [Unit]
 Description=Websocket-Dropbear
-Documentation=https://google.com
+Documentation=https://t.me/aixxy7
 After=network.target nss-lookup.target
 
 [Service]
